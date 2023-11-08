@@ -19,6 +19,7 @@ else:
 
 
 class SortedListFood(Screen):
+<<<<<<< HEAD
     #def on_enter(self):
         #data_foods = self.get_data_foods()
         #self.set_list_foods(data_foods)
@@ -27,6 +28,16 @@ class SortedListFood(Screen):
     #    self._app.user_data = \
     #        ast.literal_eval(self._app.config.get('General', 'user_data'))
     #    return self._app.user_data
+=======
+    def on_enter(self):
+        data_foods = self.get_data_foods()
+        self.set_list_foods(data_foods)
+
+    def get_data_foods(self):
+        self._app.user_data = \
+            ast.literal_eval(self._app.config.get('General', 'user_data'))
+        return self._app.user_data
+>>>>>>> 862aeb5f9becb791eb0805cb2af130cd37928608
 
     def set_list_foods(self, data_foods):
         for f, d in sorted(data_foods.items(), key=lambda x: x[1]):
@@ -50,7 +61,11 @@ class AddFood(Screen):
         self._app.config.write()
 
     def set_new_food(self, name_food):
+<<<<<<< HEAD
         if not platform:
+=======
+        if not PY2:
+>>>>>>> 862aeb5f9becb791eb0805cb2af130cd37928608
             self.ids.result_label.text = \
                 "Последнее добавленное блюдо:  " + name_food
         else:
