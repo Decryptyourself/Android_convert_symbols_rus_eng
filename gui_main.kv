@@ -23,10 +23,10 @@
         orientation: 'vertical'
 
         Button:
-            text: "Дневник питания"
+            text: "Страница"
             on_release: app.screen_manager.current = 'list_food'
         Button:
-            text: "Добавить блюдо в дневник питания"
+            text: "Добавить нечто"
             on_release: app.screen_manager.current = 'add_food'
 
 
@@ -48,10 +48,10 @@
             multiline: False
             height: dp(40)
             size_hint_y: None
-            hint_text: "Название блюда"
+            hint_text: "Название некое"
 
         Button:
-            text: "Добавить блюдо"
+            text: "Добавить нечто"
             size_hint_y: None
             height: dp(40)
             on_press:

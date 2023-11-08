@@ -52,10 +52,10 @@ class AddFood(Screen):
     def set_new_food(self, name_food):
         if not platform:
             self.ids.result_label.text = \
-                "Последнее добавленное блюдо:  " + name_food
+                "Последнее добавленное нечто:  " + name_food
         else:
             self.ids.result_label.text = \
-                u"Последнее добавленное блюдо:  " + name_food
+                u"Последнее добавленное нечто:  " + name_food
 
     def button_clicked(self, input_food):
         self.set_user_data(input_food)
@@ -63,9 +63,9 @@ class AddFood(Screen):
         self.set_new_food(input_food)
 
 
-class FoodOptionsApp(App):
+class ConvertRusEngApp(App):
     def __init__(self, **kvargs):
-        super(FoodOptionsApp, self).__init__(**kvargs)
+        super(ConvertRusEngApp, self).__init__(**kvargs)
 
         self.config = ConfigParser()
         self.screen_manager = Factory.ManagerScreens()
@@ -81,7 +81,7 @@ class FoodOptionsApp(App):
             'General', 'user_data'))
 
     def get_application_config(self):
-        return super(FoodOptionsApp, self).get_application_config(
+        return super(ConvertRusEngApp, self).get_application_config(
             '{}/%(appname)s.ini'.format(self.directory))
 
     def build(self):
@@ -89,4 +89,4 @@ class FoodOptionsApp(App):
 
 
 if __name__ == '__main__':
-    FoodOptionsApp().run()
+    ConvertRusEngApp().run()
