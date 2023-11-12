@@ -1,34 +1,68 @@
 <MainWindowConvert>:
     orientation: 'vertical'
-    spacing: 20
+    spacing: 0
     padding: 20
 
-    TextInput:
-        hint_text: "Введите текст"
-        multiline: False
-        id: text_input
-        font_size: 18
-        size_hint_y: None
-        height: '48dp'
-        background_color: 0.9, 0.9, 0.9, 1
+    RelativeLayout:
+        Image:
+            source: 'img/king_sys.png'
+            size_hint: 1, 1
+            allow_stretch: True
+            keep_ratio: True
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
 
-    Button:
-        text: "Получить текст"
-        size_hint_y: None
-        height: '48dp'
-        background_color: 0.2, 0.7, 0.3, 1
-        color: 1, 1, 1, 1
-        on_press: root.getText(self)
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0.6  # Устанавливаем полупрозрачность для изображения
 
-    Label:
-        text: root.resultText
-        size_hint_y: None
-        height: '48dp'
-        on_touch_down: root.copy_to_clipboard(self)
-        id: text_label
-        canvas.before:
-            Color:
-                rgba: 0.2, 0.2, 0.7, 1
-            Rectangle:
-                pos: self.pos
-                size: self.size
+        Label:
+            text: "Конвертация русских символов в английские, будто они были введены на английской раскладке"
+            font_size: 24
+            color: 0, 0, 0, 1  # Черный цвет текста
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0.6  # Полупрозрачный белый цвет тени
+                Rectangle:
+                    pos: self.pos[0] + 1, self.pos[1] - 1  # Смещаем тень на 1 пиксель вниз и 1 вправо
+                    size: self.size
+            text_size: self.width, None  # Это необходимо, чтобы текст не обрезался
+            halign: 'center'  # Выравнивание по горизонтали по центру
+            valign: 'center'  # Выравнивание по вертикали по центру
+            multiline: True  # Разрешаем перенос текста на новую строку
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: '144dp'
+            pos_hint: {'center_x': 0.5, 'y': 0}  # Устанавливаем y: 0, чтобы центрировать по нижнему краю
+
+            TextInput:
+                hint_text: "Введите текст"
+                multiline: False
+                id: text_input
+                font_size: 18
+                size_hint_y: None
+                height: '48dp'
+                background_color: 0.9, 0.9, 0.9, 1
+
+            Button:
+                text: "Получить текст"
+                size_hint_y: None
+                height: '48dp'
+                background_color: 0.2, 0.7, 0.3, 1
+                color: 1, 1, 1, 1
+                on_press: root.getText(self)
+
+            Label:
+                text: root.resultText
+                size_hint_y: None
+                height: '48dp'
+                on_touch_down: root.copy_to_clipboard(self)
+                id: text_label
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.2, 0.7, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
