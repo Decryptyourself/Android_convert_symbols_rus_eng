@@ -4,17 +4,23 @@ from kivy.lang import Builder
 from kivy.core.clipboard import Clipboard
 from kivy.properties import StringProperty
 from kivy.clock import Clock
+from matching_symbols import MatchingSymbols
 
 class MainWindowConvert(BoxLayout):
     resultText = StringProperty("")
+    dictForConvert = MatchingSymbols.dictForConvert
 
     def getText(self, instance):
         self.textForUser = self.ids.text_input.text
         self.convertText(self.textForUser)
         Clock.schedule_once(self.changeText, 30) # затирка текста через 30 секунд
 
-    def convertText(self, text): #TODO перевод русских букв в английские
+    def convertText(self, text):
         self.resultText = text
+        for symbol in text:
+            if symbol in self.dictForConvert:
+                self.resultText = self.resultText.replace(symbol, self.dictForConvert[symbol])
+            else: continue
         return self.resultText
 
     def copy_to_clipboard(self, instance):
@@ -26,6 +32,7 @@ class MainWindowConvert(BoxLayout):
 
 class ConvertRusEngApp(App):
     def build(self):
+        self.title = "Конвертация символов"
         Builder.load_file('main_window_convert.kv')
         return MainWindowConvert()
 
