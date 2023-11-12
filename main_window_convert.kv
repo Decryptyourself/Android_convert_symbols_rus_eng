@@ -1,0 +1,34 @@
+<MainWindowConvert>:
+    orientation: 'vertical'
+    spacing: 20
+    padding: 20
+
+    TextInput:
+        hint_text: "Введите текст"
+        multiline: False
+        id: text_input
+        font_size: 18
+        size_hint_y: None
+        height: '48dp'
+        background_color: 0.9, 0.9, 0.9, 1
+
+    Button:
+        text: "Получить текст"
+        size_hint_y: None
+        height: '48dp'
+        background_color: 0.2, 0.7, 0.3, 1
+        color: 1, 1, 1, 1
+        on_press: root.getText(self)
+
+    Label:
+        text: root.resultText
+        size_hint_y: None
+        height: '48dp'
+        on_touch_down: root.copy_to_clipboard(self)
+        id: text_label
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.2, 0.7, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
